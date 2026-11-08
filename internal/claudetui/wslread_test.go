@@ -118,7 +118,7 @@ func TestWSLReadRefuses(t *testing.T) {
 	if _, err := startWSLRead("Ubuntu", "abc", t.TempDir()); err == nil || !strings.Contains(err.Error(), "can't be read in WSL") {
 		t.Fatalf("a shell that said nope: %v", err)
 	}
-	wslReadCommand = func(string, string) *exec.Cmd { return exec.Command("/bin/sh", "-c", "cat >/dev/null") }
+	wslReadCommand = func(string, string) *exec.Cmd { return exec.Command("/bin/sh", "-c", "cat") }
 	if _, err := startWSLRead("Ubuntu", "abc", t.TempDir()); err == nil || !strings.Contains(err.Error(), "didn't start") {
 		t.Fatalf("a shell that said nothing: %v", err)
 	}

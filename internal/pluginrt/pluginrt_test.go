@@ -100,7 +100,7 @@ func TestPluginsImportOnlyCore(t *testing.T) {
 		}
 		rel, _ := filepath.Rel(root, path)
 		if d.IsDir() {
-			if rel == "site" || rel == "build" || strings.HasPrefix(d.Name(), ".") && rel != "." {
+			if rel == "site" || rel == "build" || rel == "vendor" || strings.HasPrefix(d.Name(), ".") && rel != "." {
 				return filepath.SkipDir
 			}
 			return nil

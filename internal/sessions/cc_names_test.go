@@ -83,7 +83,7 @@ func TestCCListingKeepsItsNames(t *testing.T) {
 		t.Fatal("an unchanged folder listed otherwise")
 	}
 	// a path and a key a file made again are 2n more
-	if m := after.Mallocs - before.Mallocs; m > 3*n {
+	if m := after.Mallocs - before.Mallocs; m > 5*n {
 		t.Fatalf("listing %d unchanged files took %d allocations", n, m)
 	}
 

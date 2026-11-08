@@ -321,7 +321,11 @@ func TestOpenInRex(t *testing.T) {
 	// the script, run as Rex runs it
 	dir := t.TempDir()
 	args := rexScript("cd " + shellQuote(dir) + " && echo ran > out")
-	t.Setenv("SHELL", "/usr/bin/true")
+	trueBin, err := exec.LookPath("true")
+	if err != nil {
+		trueBin = "/usr/bin/true"
+	}
+	t.Setenv("SHELL", trueBin)
 	if out, err := proc.Command(args[1], args[2:]...).CombinedOutput(); err != nil {
 		t.Fatalf("script: %v %s", err, out)
 	}

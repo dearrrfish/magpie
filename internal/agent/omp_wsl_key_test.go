@@ -79,7 +79,11 @@ func TestWSLProbeFindsBunOmp(t *testing.T) {
 	testenv.Program(t, filepath.Join(bun, "bun"), "#!/bin/sh\necho omp/16.5.1\n")
 	// a program too: the probe runs it under its own timeout 10, which a
 	// newly written file's first-run check on macOS outlasts under load
-	testenv.Program(t, filepath.Join(bun, "omp"), "#!/usr/bin/env bun\n")
+	envBin, err := exec.LookPath("env")
+	if err != nil {
+		envBin = "/usr/bin/env"
+	}
+	testenv.Program(t, filepath.Join(bun, "omp"), "#!"+envBin+" bun\n")
 	if err := os.Symlink(to, filepath.Join(sys, "timeout")); err != nil {
 		t.Fatal(err)
 	}

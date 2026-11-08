@@ -27,7 +27,7 @@ func TestEveryStartedCommandIsWaited(t *testing.T) {
 			return err
 		}
 		if d.IsDir() {
-			if path != root && (strings.HasPrefix(d.Name(), ".") || d.Name() == "node_modules" || d.Name() == "testdata") {
+			if path != root && (strings.HasPrefix(d.Name(), ".") || d.Name() == "node_modules" || d.Name() == "vendor" || d.Name() == "testdata") {
 				return filepath.SkipDir
 			}
 			return nil

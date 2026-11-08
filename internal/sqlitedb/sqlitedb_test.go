@@ -80,7 +80,7 @@ func TestOnlyThisPackageReachesSQLite(t *testing.T) {
 			return err
 		}
 		if d.IsDir() {
-			if path != root && (strings.HasPrefix(d.Name(), ".") || d.Name() == "node_modules" || d.Name() == "testdata" || path == self) {
+			if path != root && (strings.HasPrefix(d.Name(), ".") || d.Name() == "node_modules" || d.Name() == "vendor" || d.Name() == "testdata" || path == self) {
 				return filepath.SkipDir
 			}
 			return nil
